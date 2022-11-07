@@ -8,7 +8,7 @@ router.post("/order", (req, res) => {
     inventoryModel.find({ product_id: req.body.product_id }).then((data) => {
         if (data.length) {
             const available = data[0].available_quantity
-            if (available > quantity) {
+            if (available > req.body.quantity) {
                 orderModel.create({
                     customer_id: req.body.customer_id,
                     product_id: req.body.product_id,
